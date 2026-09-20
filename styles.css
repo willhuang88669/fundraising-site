@@ -1090,7 +1090,10 @@ body:has(.doc-dialog[open]) { overflow: hidden; }
   .tw-rank li { grid-template-columns: 22px 56px minmax(0, 1fr); }
   .tw-rk-v { grid-column: 2 / -1; font-size: 13px; color: var(--muted); }
   .how { grid-template-columns: 1fr; gap: 16px; }
-  .how-stage { min-height: 0; aspect-ratio: 1 / 1.05; }
+  /* 不用 aspect-ratio：Safari 遇到只有絕對定位內容的格子，高度會算成 0，畫面就消失 */
+  .how { align-items: start; }
+  .how-pill { padding: 11px 16px; font-size: 14px; }
+  .how-stage { min-height: 0; aspect-ratio: auto; height: clamp(340px, 104vw, 460px); }
   .how-svg { inset: 0 0 60px 0; height: calc(100% - 60px); }
   .how-row { grid-template-columns: 40px minmax(0, 1fr); grid-template-areas: "n t" ". d"; row-gap: 6px; padding: 16px 18px 20px; }
   .how-n { width: 40px; height: 40px; }
