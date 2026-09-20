@@ -258,7 +258,7 @@ img.ph-case { width: 100%; height: auto; }
 .hero { padding: 24px 0 8px; }
 .hero > .container { width: calc(100% - 48px); max-width: 1280px; padding: 0; }
 .hero-stage {
-  position: relative; overflow: hidden; isolation: isolate;
+  position: relative; overflow: hidden; isolation: isolate; clip-path: inset(0 round 40px);
   display: grid; grid-template-columns: minmax(0, .95fr) minmax(0, 1.05fr); grid-template-areas: "visual panel";
   gap: 20px; padding: 20px; min-height: 750px; border-radius: 40px;
   background: radial-gradient(circle at 24% 94%, rgba(255, 255, 255, .8) 0, rgba(255, 255, 255, 0) 36%), var(--sunset);
@@ -276,7 +276,7 @@ img.ph-case { width: 100%; height: auto; }
 .hero h1 { white-space: nowrap; font-family: var(--display); font-size: clamp(30px, 3vw, 42px); line-height: 1.5; font-weight: 800; color: var(--ink); }
 .hero .lead { max-width: none; color: var(--muted); font-size: 17px; }
 .hero .note { max-width: none; }
-.hero-visual { grid-area: visual; position: relative; min-width: 0; display: flex; flex-direction: column; justify-content: flex-end; overflow: hidden; border-radius: 28px; }
+.hero-visual { clip-path: inset(0 round 28px); grid-area: visual; position: relative; min-width: 0; display: flex; flex-direction: column; justify-content: flex-end; overflow: hidden; border-radius: 28px; }
 .hero-bubbles { position: absolute; inset: 0 0 auto 0; height: 200px; z-index: 4; pointer-events: none; }
 .bub { position: absolute; max-width: 240px; padding: 12px 16px; border-radius: 20px 20px 20px 6px; background: #fff; color: var(--ink); font-size: 14px; line-height: 1.6; box-shadow: 0 10px 26px rgba(23, 23, 26, .16); }
 .bub-in { top: 22px; left: 24px; }
@@ -311,7 +311,7 @@ img.ph-case { width: 100%; height: auto; }
 .hc-slide {
   position: absolute; left: 50%; bottom: 0; display: block; overflow: hidden;
   width: var(--slide-w); height: 100%; margin-left: calc(var(--slide-w) / -2);
-  border-radius: 32px; background: linear-gradient(180deg, #FFD9D0 0%, #FF8A73 52%, #C9381F 100%);
+  border-radius: 32px; clip-path: inset(0 round 32px); background: linear-gradient(180deg, #FFD9D0 0%, #FF8A73 52%, #C9381F 100%);
   color: #fff; text-decoration: none; text-align: left;
   transform-origin: 50% 100%;
   transform: translateX(calc(var(--off, 0) * var(--pitch) + var(--drag, 0px))) scale(var(--s, 1));
@@ -427,7 +427,7 @@ img.ph-case { width: 100%; height: auto; }
 
 /* ===== 首頁：如何運作（左邊動畫、右邊步驟列） ===== */
 .how { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: 32px; align-items: stretch; }
-.how-stage { position: relative; overflow: hidden; border-radius: 28px; background: #E9E9EE; min-height: 560px; }
+.how-stage { position: relative; overflow: hidden; clip-path: inset(0 round 28px); border-radius: 28px; background: #E9E9EE; min-height: 560px; }
 .how-svg { position: absolute; inset: 0 0 64px 0; width: 100%; height: calc(100% - 64px); }
 .scene { opacity: 0; visibility: hidden; transition: opacity .45s ease, visibility 0s linear .45s; }
 .how-stage[data-step="1"] .scene[data-scene="1"], .how-stage[data-step="2"] .scene[data-scene="2"],
@@ -1066,7 +1066,7 @@ body:has(.doc-dialog[open]) { overflow: hidden; }
   :root { --gutter: 20px; --r-card: 24px; }
   .hero { padding: 12px 0 4px; }
   .hero > .container, .band > .container, .cta-band > .container { width: calc(100% - 24px); }
-  .hero-stage { grid-template-columns: minmax(0, 1fr); grid-template-areas: "panel" "visual"; gap: 12px; padding: 12px; min-height: 0; border-radius: 28px; }
+  .hero-stage { grid-template-columns: minmax(0, 1fr); grid-template-areas: "panel" "visual"; gap: 12px; padding: 12px; min-height: 0; border-radius: 28px; clip-path: inset(0 round 28px); }
   .hero-panel { padding: 28px 22px; border-radius: 22px; }
   .hero h1 { font-size: clamp(28px, 8vw, 40px); }
   .pw { padding: .08em .36em .12em; margin: .06em .04em; }
