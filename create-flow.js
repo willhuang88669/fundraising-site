@@ -1,4 +1,4 @@
-/* 發起求助 步驟 4：必要的聲明全部勾選後，才能前往下一步。
+/* 發起求助 步驟 3：必要的聲明全部勾選後，才能前往下一步。
    沒有 JavaScript 時，按鈕仍可直接前往下一步。 */
 (function () {
   var boxes = Array.prototype.slice.call(document.querySelectorAll('input[data-required]'));

@@ -1,0 +1,267 @@
+/* 全站主題：所有頁面都在 styles.css 之後載入這個檔案，蓋掉原本的配色與框線。
+   配色：#EC6630 橘、#5DB3C8 湖水藍、#F2C343 芥末黃、#2F2F2F 炭黑、#DDD2BC 米褐、#FDF4E8 奶油白。
+   風格：炭黑粗框＋硬陰影＋太陽／星星飄移裝飾（兩側裝飾由 theme-deco.js 產生）。
+   首頁專屬的區塊（首屏、跑馬燈、如何運作、地圖）在其他頁面不存在，那幾段規則不會有作用。 */
+
+:root {
+  --nb-orange: #EC6630;
+  --nb-orange-deep: #B04317;
+  --nb-orange-ink: #7A2C0E;
+  --nb-teal: #5DB3C8;
+  --nb-teal-light: #D3ECF2;
+  --nb-teal-ink: #0F3A45;
+  --nb-yellow: #F2C343;
+  --nb-yellow-ink: #4A3700;
+  --nb-charcoal: #2F2F2F;
+  --nb-beige: #DDD2BC;
+  --nb-cream: #FDF4E8;
+  --nb-line: var(--nb-charcoal);
+
+  --nb-border: 3px solid var(--nb-line);
+  --nb-shadow: 6px 6px 0 var(--nb-line);
+  --nb-shadow-sm: 3px 3px 0 var(--nb-line);
+  --nb-shadow-press: 1px 1px 0 var(--nb-line);
+
+  /* 全站按鈕、連結、強調字、進度條、排行榜長條都吃這幾個變數 */
+  --coral: var(--nb-orange);
+  --coral-deep: var(--nb-orange-deep);
+  --coral-ink: var(--nb-orange-ink);
+  --coral-tint: #FBE0D3;
+  --coral-wash: #FDEDE4;
+  --coral-soft: var(--nb-yellow);
+  --action: var(--nb-orange);
+  --action-dark: #D8561F;
+  --on-action: #17171A;
+  --bg: #F3EBDD;
+  --sunset: linear-gradient(180deg, #FBE7A6 0%, #F7D570 50%, var(--nb-yellow) 100%);
+
+  /* 頁尾：湖水藍，跟頁首前後呼應；字改深色 */
+  --footer-bg: var(--nb-teal);
+  --footer-text: #10303A;
+  --footer-line: rgba(47, 47, 47, .35);
+}
+
+/* 頁首：湖水藍底。原本導覽列是灰字、網站名稱是深橘棕字，在湖水藍上對比不夠，全部改成炭黑 */
+.site-header { background: var(--nb-teal); }
+.site-header .brand, .site-header .brand:hover { color: var(--nb-charcoal); }
+.site-header .nav a, .site-header .link-plain { color: var(--nb-charcoal); font-weight: 700; }
+.site-header .nav a:hover, .site-header .link-plain:hover { color: var(--nb-charcoal); background: rgba(255, 255, 255, .45); }
+
+/* 頁尾：湖水藍底、深色字，上緣加炭黑粗線 */
+.site-footer { border-top: var(--nb-border); }
+.footer-grid { margin-bottom: 0; }
+.footer-col b, .footer-col .brand-name, .footer-col a:hover { color: var(--nb-charcoal); }
+.site-footer :focus-visible { outline-color: var(--nb-charcoal); }
+
+body { background: var(--nb-cream); position: relative; }
+
+/* 寫死顏色（不吃變數）的地方另外換 */
+.hc-slide { background: linear-gradient(180deg, var(--nb-cream) 0%, #F6B58F 50%, var(--nb-orange) 100%); }
+.map-legend i { background: linear-gradient(90deg, var(--nb-cream), var(--nb-orange-deep)); }
+.ss-row { background: var(--nb-charcoal); }
+.ss-dot { background: var(--nb-yellow); }
+.how-stage { background: var(--nb-beige); }
+.how-row.is-on .how-n { background: var(--nb-charcoal); border-color: var(--nb-charcoal); }
+.cta-band > .container { background: var(--nb-yellow); }
+.bub-out { background: var(--nb-teal); color: var(--nb-teal-ink); }
+
+/* 地圖與「如何運作」插畫原本是珊瑚紅，微調色相往橘色靠 */
+.tw-svg, .how-svg { filter: hue-rotate(8deg) saturate(1.05); }
+
+/* 首屏：關掉模糊照片背景，改成芥末黃漸層＋白色小圓點紋理 */
+.hero-bg { display: none; }
+.hero-stage {
+  background-image:
+    radial-gradient(circle, rgba(255, 255, 255, .55) 3px, transparent 3.5px),
+    var(--sunset);
+  background-size: 28px 28px, 100% 100%;
+}
+
+/* 跑馬燈兩側卡片漸層淡出，不被外框硬切 */
+.hc-stage {
+  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 16%, #000 84%, transparent 100%);
+  mask-image: linear-gradient(90deg, transparent 0, #000 16%, #000 84%, transparent 100%);
+}
+
+/* 按鈕 */
+.btn {
+  border-width: 3px;
+  box-shadow: var(--nb-shadow-sm);
+  transition: background-color .12s, color .12s, border-color .12s, transform .12s, box-shadow .12s;
+}
+.btn-primary, .btn-white { border-color: var(--nb-line); }
+.btn-white { background: var(--nb-charcoal); }
+.btn-outline, .btn-ghost-white { border-color: var(--nb-line); box-shadow: none; }
+.btn:hover { transform: translate(-1px, -1px); box-shadow: 5px 5px 0 var(--nb-line); }
+.btn:active { transform: translate(2px, 2px); box-shadow: var(--nb-shadow-press); }
+
+/* 標籤：案件類型芥末黃、身分驗證湖水藍、地點米褐 */
+.chip { border: 1.5px solid var(--nb-line); font-weight: 700; }
+.chip:not(.chip-ok):not(.chip-warn):not(.chip-loc):not(.chip-danger) { background: var(--nb-yellow); color: var(--nb-yellow-ink); }
+.chip-ok { background: var(--nb-teal); color: var(--nb-teal-ink); }
+.chip-loc { background: var(--nb-beige); color: var(--nb-charcoal); font-weight: 500; }
+
+/* 卡片與大區塊 */
+.card, .feature, .case-card,
+.band > .container, .map-card, .cta-band > .container {
+  border: var(--nb-border);
+  box-shadow: var(--nb-shadow);
+}
+.case-card::before { display: none; }
+.case-card, .band > .container, .map-card { background: #fff; }
+
+.hero-stage, .how-stage, .hc-slide { box-shadow: inset 0 0 0 3px var(--nb-line); }
+.site-header { border-bottom: var(--nb-border); }
+
+.hc-dot { border: 1.5px solid var(--nb-line); background: #fff; }
+.hc-dot[aria-current="true"] { background: var(--nb-orange); }
+
+/* 飄移動畫：區塊內與兩側的太陽／星星都會動 */
+@keyframes y2k-float {
+  0%   { transform: translate(0, 0) rotate(0deg); }
+  50%  { transform: translate(6px, -14px) rotate(8deg); }
+  100% { transform: translate(-5px, 10px) rotate(-6deg); }
+}
+
+/* 區塊內的裝飾：放在區塊內側留白，不壓邊框 */
+.y2k-deco {
+  display: block !important; position: absolute; z-index: 5; pointer-events: none;
+  animation: y2k-float var(--dur, 6.5s) ease-in-out var(--delay, 0s) infinite alternate;
+}
+.y2k-deco-sun { top: 20px; right: 20px; width: 52px; height: 52px; --dur: 7.5s; }
+.y2k-deco-sparkle { top: 22px; right: 24px; width: 30px; height: 30px; --dur: 5.5s; --delay: -1.2s; }
+.y2k-deco-sparkle-sm { top: 18px; left: 20px; width: 26px; height: 26px; --dur: 6s; --delay: -2s; }
+.y2k-deco-sparkle-2 { top: 0; right: 0; width: 30px; height: 30px; --dur: 5.8s; --delay: -.8s; }
+.y2k-deco-sun-2 { top: -4px; left: 150px; width: 40px; height: 40px; --dur: 8s; --delay: -3s; }
+.y2k-deco-sparkle-3 { top: 0; right: 0; width: 26px; height: 26px; --dur: 6.4s; --delay: -1.6s; }
+.cta-band > .container { position: relative; }
+
+/* 頁面兩側的飄移裝飾：水平位置在「內容區（最寬 1280px）外的左右留白正中間」，
+   不會壓到區塊邊框；垂直位置由 theme-deco.js 排在頁首與頁尾之間；1440px 以下留白太窄就隱藏 */
+.y2k-side-deco {
+  --s: 40px;
+  position: absolute; z-index: 0;
+  width: var(--s); height: var(--s);
+  pointer-events: none;
+  display: block !important;
+  animation: y2k-float var(--dur, 7s) ease-in-out var(--delay, 0s) infinite alternate;
+}
+.y2k-side-l { left: calc((100vw - 1280px) / 4 - var(--s) / 2 + var(--dx, 0px)); }
+.y2k-side-r { right: calc((100vw - 1280px) / 4 - var(--s) / 2 + var(--dx, 0px)); }
+
+@media (prefers-reduced-motion: reduce) {
+  .y2k-deco, .y2k-side-deco { animation: none; }
+}
+@media (max-width: 1440px) {
+  .y2k-side-deco { display: none !important; }
+}
+
+/* 數字卡片列（後台、我的留言）：整排做成一個粗框大卡，格子之間用炭黑細線分隔；
+   欄數依卡片數量自動填滿，不會在右邊留下空格 */
+.stat-grid, .stat-grid-3 {
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 3px;
+  background: var(--nb-line);
+  border: var(--nb-border);
+  box-shadow: var(--nb-shadow);
+}
+.stat-grid > .card.stat { border: 0; box-shadow: none; border-radius: 0; background: #fff; padding: 24px 24px 22px; gap: 6px; }
+.stat-grid .stat b { font-size: 28px; }
+
+/* 首頁「進行中案件」底下的看全部按鈕 */
+.cases-more { justify-content: center; margin-top: 36px; }
+
+/* 典藏案件：案件頁的典藏按鈕（已典藏時實心）、會員中心的典藏清單、提示小視窗 */
+.save-btn .ic path { fill: none; }
+.save-btn.is-saved { background: var(--nb-yellow); color: var(--nb-charcoal); border-color: var(--nb-line); }
+.save-btn.is-saved .ic path { fill: currentColor; }
+.saved-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 28px; }
+.saved-grid[hidden] { display: none; }
+.saved-card::after { display: none; }
+.saved-card > a { display: block; }
+.saved-card .case-title { color: inherit; text-decoration: none; }
+.saved-card .case-title:hover { color: var(--coral-deep); }
+.saved-remove {
+  position: absolute; top: 14px; right: 14px; z-index: 3;
+  width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center;
+  background: var(--nb-yellow); color: var(--nb-charcoal); border: 2px solid var(--nb-line); cursor: pointer;
+}
+.saved-remove .ic path { fill: currentColor; }
+.saved-remove:hover { background: #fff; }
+.saved-remove:hover .ic path { fill: none; }
+.saved-meta { display: flex; flex-wrap: wrap; gap: 4px 14px; }
+.save-toast {
+  position: fixed; left: 50%; bottom: 28px; z-index: 50; transform: translate(-50%, 20px);
+  max-width: calc(100vw - 32px); padding: 12px 20px; border-radius: 999px;
+  background: var(--nb-charcoal); color: #fff; font-weight: 700; font-size: 15px;
+  opacity: 0; pointer-events: none; transition: opacity .2s, transform .2s;
+}
+.save-toast.is-on { opacity: 1; transform: translate(-50%, 0); }
+@media (max-width: 760px) { .save-toast { bottom: 96px; } }
+@media (prefers-reduced-motion: reduce) { .save-toast { transition: none; } }
+
+/* 捐贈頁卡片右上角的典藏按鈕（取代原本的箭頭圖示） */
+.case-slot { position: relative; display: flex; }
+.case-slot[hidden] { display: none; }
+.case-slot > .case-card { flex: 1; }
+.case-slot > .case-card::after { display: none; }
+.card-save {
+  position: absolute; top: 14px; right: 14px; z-index: 4;
+  width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center;
+  background: #fff; color: var(--nb-charcoal); border: 2px solid var(--nb-line); cursor: pointer;
+}
+.card-save:hover { background: var(--nb-cream); }
+.card-save.is-saved { background: var(--nb-yellow); }
+
+/* 發起求助的新手引導（guide.js）：亮起目前的區塊，其他地方變暗；說明框跟著區塊移動 */
+.guide-ring {
+  position: fixed; z-index: 60; pointer-events: none; display: none;
+  border-radius: 20px;
+  box-shadow: 0 0 0 4px var(--nb-orange), 0 0 0 9999px rgba(47, 47, 47, .5);
+  transition: top .25s, left .25s, width .25s, height .25s;
+}
+.guide-ring.is-on { display: block; }
+.guide-box {
+  position: fixed; z-index: 61; display: none;
+  width: min(380px, calc(100vw - 32px)); padding: 18px 20px 16px;
+  background: #fff; border: var(--nb-border); border-radius: 20px; box-shadow: var(--nb-shadow);
+  flex-direction: column; gap: 8px;
+}
+.guide-box.is-on { display: flex; }
+.guide-box.is-welcome {
+  top: 50% !important; left: 50% !important; transform: translate(-50%, -50%);
+  width: min(440px, calc(100vw - 32px)); padding: 24px;
+  box-shadow: var(--nb-shadow), 0 0 0 9999px rgba(47, 47, 47, .5);
+}
+.guide-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.guide-count { font-size: 13px; font-weight: 700; background: var(--nb-yellow); color: var(--nb-yellow-ink); border: 1.5px solid var(--nb-line); border-radius: 999px; padding: 2px 10px; }
+.guide-skip { background: none; border: 0; padding: 6px 2px; font: inherit; font-size: 14px; color: var(--muted); text-decoration: underline; cursor: pointer; }
+.guide-skip:hover { color: var(--nb-charcoal); }
+.guide-t { font-family: var(--display); font-size: 20px; font-weight: 800; line-height: 1.4; }
+.guide-d { margin: 0; font-size: 15px; line-height: 1.7; color: var(--ink); }
+.guide-tool { align-self: flex-start; }
+.guide-actions { display: flex; justify-content: flex-end; gap: 10px; margin-top: 6px; }
+.guide-launch {
+  position: fixed; right: 20px; bottom: 20px; z-index: 40;
+  display: inline-flex; align-items: center; gap: 8px; padding: 10px 16px;
+  background: var(--nb-yellow); color: var(--nb-charcoal); font: inherit; font-weight: 700; font-size: 15px;
+  border: var(--nb-border); border-radius: 999px; box-shadow: var(--nb-shadow-sm); cursor: pointer;
+}
+.guide-launch:hover { transform: translate(-1px, -1px); box-shadow: 5px 5px 0 var(--nb-line); }
+@media (max-width: 760px) {
+  .guide-box:not(.is-welcome) { top: auto !important; left: 16px !important; bottom: 16px; }
+  .guide-launch { bottom: 16px; right: 16px; }
+}
+@media (prefers-reduced-motion: reduce) { .guide-ring { transition: none; } }
+
+/* 身分驗證（kyc.js）：依驗證狀態切換顯示的區塊 */
+[data-kyc-done][hidden], [data-kyc-pending][hidden], .steps[hidden] { display: none !important; }
+.kyc-banner { align-items: center; }
+.kyc-banner > span { flex: 1; }
+.kyc-face { padding: 22px 24px; border: var(--nb-border); gap: 20px; }
+.kyc-face > .row { flex: none; }
+.kyc-guardian { min-height: 0; padding-top: 18px; padding-bottom: 18px; }
+@media (max-width: 760px) { .kyc-banner { flex-wrap: wrap; } .kyc-face { flex-direction: column; align-items: flex-start; } }
+.guide-box:focus { outline: none; }
+/* 引導捲動到某個區塊時，留出頁首的高度 */
+main :is(section, .field, .dropzone, .card, .choice-grid, .form-grid, .form-actions, #declarations, .kyc-face) { scroll-margin-top: 110px; scroll-margin-bottom: 24px; }

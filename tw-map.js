@@ -1,4 +1,4 @@
-/* 首頁捐贈地圖：滑過（或點、鍵盤聚焦）縣市時，右側顯示該縣市的數字；離開後回到全台。
+/* 首頁案件地圖：滑過（或點、鍵盤聚焦）縣市時，右側顯示該縣市的數字；離開後回到全台。
    數字寫在 HTML 裡（data-*），沒有 JavaScript 時仍可用表格查看。 */
 (function () {
   var big = document.getElementById('map-big');
@@ -16,8 +16,8 @@
     el.classList.add('is-on');
     // 較小的縣市（例如台北市、基隆）會被畫在較大的縣市之上，這裡再把目前這個移到最上層，避免邊框被蓋住
     el.parentNode.appendChild(el);
-    tag.textContent = el.dataset.name + '・過去 365 天';
-    big.innerHTML = '<b>' + el.dataset.count + '</b> 次捐贈，共募得 <b>NT$ ' + el.dataset.amount + '</b>';
+    tag.textContent = el.dataset.name + '・目前';
+    big.innerHTML = '<b>' + el.dataset.cases + '</b> 個案件，<b>' + el.dataset.donors + '</b> 位捐款人會員';
     hint.textContent = '再點一次同一個縣市，或移開滑鼠，回到全台。';
   }
   function reset() {

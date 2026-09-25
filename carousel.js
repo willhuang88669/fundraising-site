@@ -1,8 +1,8 @@
 /* 首頁案件輪播
    - 每 5 秒自動換下一張；滑鼠移入、鍵盤聚焦、拖曳中、分頁在背景時暫停
-   - 手機左右滑、桌機用滑鼠拖曳、上一張／下一張按鈕、圓點、鍵盤左右鍵都能切換
+   - 手機左右滑、桌機用滑鼠拖曳、圓點、鍵盤左右鍵都能切換（沒有上一張／下一張／暫停按鈕）
    - 環狀輪播：到最後一張會接回第一張
-   - 使用者設定「減少動態效果」時不自動播放，仍可手動切換
+   - 使用者設定「減少動態效果」時不自動播放
    沒有 JavaScript 時只顯示第一張，內容與連結不受影響。 */
 (function () {
   var root = document.querySelector('[data-carousel]');
@@ -11,7 +11,6 @@
   var stage = root.querySelector('.hc-stage');
   var slides = Array.prototype.slice.call(root.querySelectorAll('.hc-slide'));
   var dots = Array.prototype.slice.call(root.querySelectorAll('.hc-dot'));
-  var toggle = root.querySelector('[data-toggle]');
   var stageBox = root.closest('.hero-stage');
   var bgLayers = stageBox ? Array.prototype.slice.call(stageBox.querySelectorAll('.hb-layer')) : [];
   var bgOn = -1;
@@ -85,18 +84,8 @@
     }
   }
 
-  function syncToggle() {
-    root.classList.toggle('is-paused', !playing);
-    toggle.setAttribute('aria-label', playing ? '暫停自動播放' : '開始自動播放');
-    // 自動播放時不逐次朗讀；停下來之後，切換才朗讀
-    stage.setAttribute('aria-live', playing ? 'off' : 'polite');
-  }
-
-  // 按鈕、圓點
-  root.querySelector('[data-prev]').addEventListener('click', prev);
-  root.querySelector('[data-next]').addEventListener('click', next);
+  // 圓點
   dots.forEach(function (d, i) { d.addEventListener('click', function () { go(i); }); });
-  toggle.addEventListener('click', function () { playing = !playing; syncToggle(); restart(); });
 
   // 鍵盤左右鍵
   root.addEventListener('keydown', function (e) {
@@ -156,7 +145,6 @@
   }, true);
 
   render();
-  syncToggle();
   // 下一個畫格才開啟過場，避免初始位置閃動
   requestAnimationFrame(function () {
     root.classList.add('is-ready');

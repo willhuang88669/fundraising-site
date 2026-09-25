@@ -4,7 +4,7 @@
   var sel = document.getElementById('county-filter');
   var grid = document.getElementById('case-grid');
   if (!sel || !grid) return;
-  var cards = Array.prototype.slice.call(grid.querySelectorAll('.case-card'));
+  var cards = Array.prototype.slice.call(grid.querySelectorAll('.case-slot'));
   var count = document.getElementById('case-count');
   var empty = document.getElementById('case-empty');
 
